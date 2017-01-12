@@ -228,6 +228,11 @@ public class BuildshipImportTaskImpl extends SetupTaskImpl implements BuildshipI
   public void perform(final SetupTaskContext context) throws Exception
   {
     final File projectDir = asFile(getProjectRootDirectory());
+    if (projectDir == null)
+    {
+      throw new NullPointerException("Project root directory not set");
+    }
+
     final File gradleUserHome = null;
     final GradleDistribution gradleDistribution = GradleDistribution.fromBuild();
     final File javaHome = null;

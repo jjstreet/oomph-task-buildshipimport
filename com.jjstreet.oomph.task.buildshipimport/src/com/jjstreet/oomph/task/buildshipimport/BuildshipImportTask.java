@@ -27,7 +27,7 @@ import org.eclipse.emf.common.util.URI;
  * </ul>
  *
  * @see com.jjstreet.oomph.task.buildshipimport.BuildshipImportPackage#getBuildshipImportTask()
- * @model annotation="http://www.eclipse.org/oomph/setup/Enablement variableName='p2.buildship.import' repository='https://raw.githubusercontent.com/jjstreet/oomph-task-buildshipimport/master/updates' installableUnits='com.jjstreet.oomph.task.buildshipimport.feature.group'"
+ * @model annotation="http://www.eclipse.org/oomph/setup/Enablement variableName='p2.buildship.import' repository='https://raw.githubusercontent.com/jjstreet/oomph-task-buildshipimport-update-site/master' installableUnits='com.jjstreet.oomph.task.buildshipimport.feature.group'"
  *        annotation="http://www.eclipse.org/oomph/setup/ValidTriggers triggers='STARTUP MANUAL'"
  * @generated
  */

@@ -238,7 +238,7 @@ public class BuildshipImportPackageImpl extends EPackageImpl implements Buildshi
     String source = "http://www.eclipse.org/oomph/setup/Enablement";
     addAnnotation(buildshipImportTaskEClass, source,
         new String[] { "variableName", "p2.buildship.import", "repository",
-            "https://raw.githubusercontent.com/jjstreet/oomph-task-buildshipimport/master/updates", "installableUnits",
+            "https://raw.githubusercontent.com/jjstreet/oomph-task-buildshipimport-update-site/master", "installableUnits",
             "com.jjstreet.oomph.task.buildshipimport.feature.group" });
   }
 
