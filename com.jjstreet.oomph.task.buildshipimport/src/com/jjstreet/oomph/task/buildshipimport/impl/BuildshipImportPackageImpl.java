@@ -2,7 +2,6 @@
  */
 package com.jjstreet.oomph.task.buildshipimport.impl;
 
-import org.eclipse.oomph.base.BasePackage;
 import org.eclipse.oomph.setup.SetupPackage;
 
 import org.eclipse.emf.ecore.EAttribute;
@@ -187,7 +186,6 @@ public class BuildshipImportPackageImpl extends EPackageImpl implements Buildshi
 
     // Obtain other dependent packages
     SetupPackage theSetupPackage = (SetupPackage)EPackage.Registry.INSTANCE.getEPackage(SetupPackage.eNS_URI);
-    BasePackage theBasePackage = (BasePackage)EPackage.Registry.INSTANCE.getEPackage(BasePackage.eNS_URI);
 
     // Create type parameters
 
@@ -198,7 +196,7 @@ public class BuildshipImportPackageImpl extends EPackageImpl implements Buildshi
 
     // Initialize classes and features; add operations and parameters
     initEClass(buildshipImportTaskEClass, BuildshipImportTask.class, "BuildshipImportTask", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getBuildshipImportTask_ProjectRootDirectory(), theBasePackage.getURI(), "ProjectRootDirectory", null, 1, 1, BuildshipImportTask.class,
+    initEAttribute(getBuildshipImportTask_ProjectRootDirectory(), ecorePackage.getEString(), "ProjectRootDirectory", null, 1, 1, BuildshipImportTask.class,
         !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Create resource

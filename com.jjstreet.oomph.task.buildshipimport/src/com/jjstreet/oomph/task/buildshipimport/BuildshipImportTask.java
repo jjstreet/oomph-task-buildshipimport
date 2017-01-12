@@ -12,8 +12,6 @@ package com.jjstreet.oomph.task.buildshipimport;
 
 import org.eclipse.oomph.setup.SetupTask;
 
-import org.eclipse.emf.common.util.URI;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Buildship Import Task</b></em>'.
@@ -43,12 +41,12 @@ public interface BuildshipImportTask extends SetupTask
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Project Root Directory</em>' attribute.
-   * @see #setProjectRootDirectory(URI)
+   * @see #setProjectRootDirectory(String)
    * @see com.jjstreet.oomph.task.buildshipimport.BuildshipImportPackage#getBuildshipImportTask_ProjectRootDirectory()
-   * @model dataType="org.eclipse.oomph.base.URI" required="true"
+   * @model required="true"
    * @generated
    */
-  URI getProjectRootDirectory();
+  String getProjectRootDirectory();
 
   /**
    * Sets the value of the '{@link com.jjstreet.oomph.task.buildshipimport.BuildshipImportTask#getProjectRootDirectory <em>Project Root Directory</em>}' attribute.
@@ -58,6 +56,6 @@ public interface BuildshipImportTask extends SetupTask
    * @see #getProjectRootDirectory()
    * @generated
    */
-  void setProjectRootDirectory(URI value);
+  void setProjectRootDirectory(String value);
 
 } // BuildshipImportTask

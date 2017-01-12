@@ -15,6 +15,6 @@
       <details key="triggers" value="STARTUP MANUAL"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="ProjectRootDirectory" lowerBound="1"
-        eType="ecore:EDataType ../../org.eclipse.oomph.base/model/Base.ecore#//URI"/>
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
 </ecore:EPackage>

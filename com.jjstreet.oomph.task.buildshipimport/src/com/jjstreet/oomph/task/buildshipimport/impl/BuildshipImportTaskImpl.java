@@ -14,7 +14,6 @@ import org.eclipse.oomph.setup.SetupTaskContext;
 import org.eclipse.oomph.setup.impl.SetupTaskImpl;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
@@ -57,7 +56,7 @@ public class BuildshipImportTaskImpl extends SetupTaskImpl implements BuildshipI
    * @generated
    * @ordered
    */
-  protected static final URI PROJECT_ROOT_DIRECTORY_EDEFAULT = null;
+  protected static final String PROJECT_ROOT_DIRECTORY_EDEFAULT = null;
 
   /**
    * The cached value of the '{@link #getProjectRootDirectory() <em>Project Root Directory</em>}' attribute.
@@ -67,7 +66,7 @@ public class BuildshipImportTaskImpl extends SetupTaskImpl implements BuildshipI
    * @generated
    * @ordered
    */
-  protected URI projectRootDirectory = PROJECT_ROOT_DIRECTORY_EDEFAULT;
+  protected String projectRootDirectory = PROJECT_ROOT_DIRECTORY_EDEFAULT;
 
   private static final int PRIORITY = PRIORITY_DEFAULT;
 
@@ -98,7 +97,7 @@ public class BuildshipImportTaskImpl extends SetupTaskImpl implements BuildshipI
    * @generated
    */
   @Override
-  public URI getProjectRootDirectory()
+  public String getProjectRootDirectory()
   {
     return projectRootDirectory;
   }
@@ -109,9 +108,9 @@ public class BuildshipImportTaskImpl extends SetupTaskImpl implements BuildshipI
    * @generated
    */
   @Override
-  public void setProjectRootDirectory(URI newProjectRootDirectory)
+  public void setProjectRootDirectory(String newProjectRootDirectory)
   {
-    URI oldProjectRootDirectory = projectRootDirectory;
+    String oldProjectRootDirectory = projectRootDirectory;
     projectRootDirectory = newProjectRootDirectory;
     if (eNotificationRequired())
     {
@@ -147,7 +146,7 @@ public class BuildshipImportTaskImpl extends SetupTaskImpl implements BuildshipI
     switch (featureID)
     {
     case BuildshipImportPackage.BUILDSHIP_IMPORT_TASK__PROJECT_ROOT_DIRECTORY:
-      setProjectRootDirectory((URI)newValue);
+      setProjectRootDirectory((String)newValue);
       return;
     }
     super.eSet(featureID, newValue);
@@ -215,8 +214,7 @@ public class BuildshipImportTaskImpl extends SetupTaskImpl implements BuildshipI
   @Override
   public boolean isNeeded(SetupTaskContext context) throws Exception
   {
-    File projectRoot = asFile(getProjectRootDirectory());
-    if (projectRoot == null)
+    if (getProjectRootDirectory() == null || getProjectRootDirectory().isEmpty())
     {
       context.log("Project root not set");
       return true;
@@ -281,24 +279,16 @@ public class BuildshipImportTaskImpl extends SetupTaskImpl implements BuildshipI
     synchronizeJob.schedule();
   }
 
-  private File asFile(URI uri)
+  private File asFile(String location)
   {
     File result = null;
 
-    if (uri == null || "".equals(uri.toString()))
+    if (location == null || location.isEmpty())
     {
       return result;
     }
 
-    if (uri.scheme() == null)
-    {
-      result = new File(uri.path());
-    }
-
-    if (uri.isFile())
-    {
-      result = new File(uri.toFileString());
-    }
+    result = new File(location);
 
     try
     {
