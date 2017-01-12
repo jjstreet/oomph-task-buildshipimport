@@ -14,8 +14,12 @@ import org.eclipse.oomph.setup.provider.SetupTaskItemProvider;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ViewerNotification;
 
+import com.jjstreet.oomph.task.buildshipimport.BuildshipImportPackage;
 import com.jjstreet.oomph.task.buildshipimport.BuildshipImportTask;
 
 import java.util.Collection;
@@ -53,8 +57,24 @@ public class BuildshipImportTaskItemProvider extends SetupTaskItemProvider
     {
       super.getPropertyDescriptors(object);
 
+      addProjectRootDirectoryPropertyDescriptor(object);
     }
     return itemPropertyDescriptors;
+  }
+
+  /**
+   * This adds a property descriptor for the Project Root Directory feature.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected void addProjectRootDirectoryPropertyDescriptor(Object object)
+  {
+    itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+        getString("_UI_BuildshipImportTask_ProjectRootDirectory_feature"),
+        getString("_UI_PropertyDescriptor_description", "_UI_BuildshipImportTask_ProjectRootDirectory_feature", "_UI_BuildshipImportTask_type"),
+        BuildshipImportPackage.Literals.BUILDSHIP_IMPORT_TASK__PROJECT_ROOT_DIRECTORY, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null,
+        null));
   }
 
   /**
@@ -112,6 +132,13 @@ public class BuildshipImportTaskItemProvider extends SetupTaskItemProvider
   public void notifyChanged(Notification notification)
   {
     updateChildren(notification);
+
+    switch (notification.getFeatureID(BuildshipImportTask.class))
+    {
+    case BuildshipImportPackage.BUILDSHIP_IMPORT_TASK__PROJECT_ROOT_DIRECTORY:
+      fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+      return;
+    }
     super.notifyChanged(notification);
   }
 

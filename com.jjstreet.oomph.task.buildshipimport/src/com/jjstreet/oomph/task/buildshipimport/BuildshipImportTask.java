@@ -12,11 +12,19 @@ package com.jjstreet.oomph.task.buildshipimport;
 
 import org.eclipse.oomph.setup.SetupTask;
 
+import org.eclipse.emf.common.util.URI;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Buildship Import Task</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <p>
+ * The following features are supported:
+ * </p>
+ * <ul>
+ *   <li>{@link com.jjstreet.oomph.task.buildshipimport.BuildshipImportTask#getProjectRootDirectory <em>Project Root Directory</em>}</li>
+ * </ul>
  *
  * @see com.jjstreet.oomph.task.buildshipimport.BuildshipImportPackage#getBuildshipImportTask()
  * @model annotation="http://www.eclipse.org/oomph/setup/Enablement variableName='p2.buildship.import' repository='https://raw.githubusercontent.com/jjstreet/oomph-task-buildshipimport/master/updates' installableUnits='com.jjstreet.oomph.task.buildshipimport.feature.group'"
@@ -25,5 +33,31 @@ import org.eclipse.oomph.setup.SetupTask;
  */
 public interface BuildshipImportTask extends SetupTask
 {
+
+  /**
+   * Returns the value of the '<em><b>Project Root Directory</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Project Root Directory</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Project Root Directory</em>' attribute.
+   * @see #setProjectRootDirectory(URI)
+   * @see com.jjstreet.oomph.task.buildshipimport.BuildshipImportPackage#getBuildshipImportTask_ProjectRootDirectory()
+   * @model dataType="org.eclipse.oomph.base.URI" required="true"
+   * @generated
+   */
+  URI getProjectRootDirectory();
+
+  /**
+   * Sets the value of the '{@link com.jjstreet.oomph.task.buildshipimport.BuildshipImportTask#getProjectRootDirectory <em>Project Root Directory</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Project Root Directory</em>' attribute.
+   * @see #getProjectRootDirectory()
+   * @generated
+   */
+  void setProjectRootDirectory(URI value);
 
 } // BuildshipImportTask

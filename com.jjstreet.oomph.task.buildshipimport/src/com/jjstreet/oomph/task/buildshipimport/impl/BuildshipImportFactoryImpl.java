@@ -76,6 +76,7 @@ public class BuildshipImportFactoryImpl extends EFactoryImpl implements Buildshi
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public BuildshipImportTask createBuildshipImportTask()
   {
     BuildshipImportTaskImpl buildshipImportTask = new BuildshipImportTaskImpl();
@@ -87,6 +88,7 @@ public class BuildshipImportFactoryImpl extends EFactoryImpl implements Buildshi
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public BuildshipImportPackage getBuildshipImportPackage()
   {
     return (BuildshipImportPackage)getEPackage();

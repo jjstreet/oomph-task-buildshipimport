@@ -4,6 +4,7 @@ package com.jjstreet.oomph.task.buildshipimport;
 
 import org.eclipse.oomph.setup.SetupPackage;
 
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 
@@ -158,13 +159,22 @@ public interface BuildshipImportPackage extends EPackage
   int BUILDSHIP_IMPORT_TASK__FILTER = SetupPackage.SETUP_TASK__FILTER;
 
   /**
+   * The feature id for the '<em><b>Project Root Directory</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BUILDSHIP_IMPORT_TASK__PROJECT_ROOT_DIRECTORY = SetupPackage.SETUP_TASK_FEATURE_COUNT + 0;
+
+  /**
    * The number of structural features of the '<em>Task</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int BUILDSHIP_IMPORT_TASK_FEATURE_COUNT = SetupPackage.SETUP_TASK_FEATURE_COUNT + 0;
+  int BUILDSHIP_IMPORT_TASK_FEATURE_COUNT = SetupPackage.SETUP_TASK_FEATURE_COUNT + 1;
 
   /**
    * Returns the meta object for class '{@link com.jjstreet.oomph.task.buildshipimport.BuildshipImportTask <em>Task</em>}'.
@@ -175,6 +185,17 @@ public interface BuildshipImportPackage extends EPackage
    * @generated
    */
   EClass getBuildshipImportTask();
+
+  /**
+   * Returns the meta object for the attribute '{@link com.jjstreet.oomph.task.buildshipimport.BuildshipImportTask#getProjectRootDirectory <em>Project Root Directory</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Project Root Directory</em>'.
+   * @see com.jjstreet.oomph.task.buildshipimport.BuildshipImportTask#getProjectRootDirectory()
+   * @see #getBuildshipImportTask()
+   * @generated
+   */
+  EAttribute getBuildshipImportTask_ProjectRootDirectory();
 
   /**
    * Returns the factory that creates the instances of the model.
@@ -208,6 +229,14 @@ public interface BuildshipImportPackage extends EPackage
      * @generated
      */
     EClass BUILDSHIP_IMPORT_TASK = eINSTANCE.getBuildshipImportTask();
+
+    /**
+     * The meta object literal for the '<em><b>Project Root Directory</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute BUILDSHIP_IMPORT_TASK__PROJECT_ROOT_DIRECTORY = eINSTANCE.getBuildshipImportTask_ProjectRootDirectory();
 
   }
 
