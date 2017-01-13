@@ -11,6 +11,7 @@
 package com.jjstreet.oomph.task.buildshipimport.impl;
 
 import org.eclipse.oomph.setup.SetupTaskContext;
+import org.eclipse.oomph.setup.Trigger;
 import org.eclipse.oomph.setup.impl.SetupTaskImpl;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -19,6 +20,11 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.buildship.core.util.progress.AsyncHandler;
 import org.eclipse.buildship.core.workspace.SynchronizeGradleProjectJob;
+import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.IWorkspaceRoot;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.jobs.IJobChangeEvent;
 import org.eclipse.core.runtime.jobs.JobChangeAdapter;
 
@@ -48,6 +54,8 @@ import java.util.concurrent.CountDownLatch;
  */
 public class BuildshipImportTaskImpl extends SetupTaskImpl implements BuildshipImportTask
 {
+  private static final IWorkspaceRoot ROOT = ResourcesPlugin.getWorkspace().getRoot();
+
   /**
    * The default value of the '{@link #getProjectRootDirectory() <em>Project Root Directory</em>}' attribute.
    * <!-- begin-user-doc -->
@@ -217,9 +225,24 @@ public class BuildshipImportTaskImpl extends SetupTaskImpl implements BuildshipI
     if (getProjectRootDirectory() == null || getProjectRootDirectory().isEmpty())
     {
       context.log("Project root not set");
-      return true;
+      return false;
     }
-    return false;
+
+    if (context.getTrigger() != Trigger.MANUAL)
+    {
+      for (IProject project : ROOT.getProjects())
+      {
+        IPath projectFolder = project.getLocation();
+        Path specifiedRoot = new Path(getProjectRootDirectory());
+        if (specifiedRoot.isPrefixOf(projectFolder))
+        {
+          // In STARTUP don't try to import project already in the workspace
+          return false;
+        }
+      }
+    }
+
+    return true;
   }
 
   @Override
