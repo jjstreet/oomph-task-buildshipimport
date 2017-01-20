@@ -24,7 +24,6 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
-import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.jobs.IJobChangeEvent;
 import org.eclipse.core.runtime.jobs.JobChangeAdapter;
 
@@ -32,6 +31,10 @@ import com.gradleware.tooling.toolingclient.GradleDistribution;
 import com.gradleware.tooling.toolingmodel.repository.FixedRequestAttributes;
 import com.jjstreet.oomph.task.buildshipimport.BuildshipImportPackage;
 import com.jjstreet.oomph.task.buildshipimport.BuildshipImportTask;
+
+import org.gradle.tooling.GradleConnector;
+import org.gradle.tooling.ProjectConnection;
+import org.gradle.tooling.model.GradleProject;
 
 import java.io.File;
 import java.io.IOException;
@@ -230,15 +233,24 @@ public class BuildshipImportTaskImpl extends SetupTaskImpl implements BuildshipI
 
     if (context.getTrigger() != Trigger.MANUAL)
     {
-      for (IProject project : ROOT.getProjects())
+      ProjectConnection connection = GradleConnector.newConnector().forProjectDirectory(asFile(getProjectRootDirectory())).connect();
+
+      try
       {
-        IPath projectFolder = project.getLocation();
-        Path specifiedRoot = new Path(getProjectRootDirectory());
-        if (specifiedRoot.isPrefixOf(projectFolder))
+        GradleProject gradleProject = connection.getModel(GradleProject.class);
+        for (IProject project : ROOT.getProjects())
         {
-          // In STARTUP don't try to import project already in the workspace
-          return false;
+          IPath projectFolder = project.getLocation();
+          if (gradleProject.findByPath(projectFolder.toString()) != null)
+          {
+            // Do not import if the gradle is already in the workspace
+            return false;
+          }
         }
+      }
+      finally
+      {
+        connection.close();
       }
     }
 
